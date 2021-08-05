@@ -1,0 +1,206 @@
+{% extends "layouts/admin_base_layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} {{page_path}} {% endblock %}
+
+
+{% block content %}
+
+
+<!-- Add Stock -->
+<section class="content">
+    <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+    <div class="container-fluid">
+        <div class="card default-card">
+            <div class="card-header card-outline card-primary">
+                <h3 class="card-title" style="color: #6b2014;">Add stock</h3> 
+            <div>
+        {% if messages %}          
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            {{ message }}
+            </div>
+            {% endfor %}
+      {% endif %}
+      </div>
+   </div>
+  <!-- /.card-header -->
+
+  <div class="card-body ">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Child Card Start -->
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title"> Stock Details </h3> 
+       
+                    <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+     <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">                          
+                                <div class="col-sm-4">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                    {{ add_stock_form.name|as_crispy_field }}
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                    {{ add_stock_form.date|as_crispy_field }}
+                                    </div>
+                                </div>
+   
+                                <div class="col-sm-4">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                        {{ add_stock_form.quantity|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                        {{ add_stock_form.unit|as_crispy_field }}
+                                    </div>
+                                </div>
+
+        
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+         <!-- /.card-body -->
+      
+  <div class="card-footer">         
+   </div>      </div>
+   </div>
+  <!-- Chiled Card End -->
+
+
+
+       
+  
+                
+
+                 
+
+ <!-- Master Card Divs -->
+      </div>
+      <!-- /.col -->
+  
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  
+  </div>
+  <!-- /.card-body -->
+
+
+
+
+<!-- Master Card Footer-->
+
+  <div class="card-footer">
+    <div class="row mb">
+      <div class="col-sm-12" style="text-align: end;">
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        
+      
+     </div></div>
+  </div>
+</div>
+</div>
+
+</form>
+</section>
+<!-- /.card -->
+<!-- patient Add End -->
+
+<!-- Total stock list -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Total Stock List</h3> 
+      <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+    </div>
+    
+  </div>
+  <!-- /.card-header -->
+
+  <div class="card-body ">
+    <div class="row">
+      <div class="col-md-12">
+        <table id="example1" class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Sr.No.</th>
+              <th>Stock Name</th>
+              <th>Total Stock quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in titem %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{t.name}}</td>
+              <td>{{t.total}}</td>
+              
+            
+          </tr>
+          
+          {% endfor %}
+    
+          </tbody>
+            
+         
+        </table>
+      
+     
+  
+                
+
+                 
+
+ <!-- Master Card Divs -->
+      </div>
+      <!-- /.col -->
+  
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  
+  </div>
+  <!-- /.card-body -->
+
+
+
+
+
+
+
+</section>
+<!-- /.card -->
+<!-- patient list End -->
+
+
+
+{% endblock %}
+
+
